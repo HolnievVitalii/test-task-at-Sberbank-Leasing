@@ -20,7 +20,7 @@ public class FileHTTPDownloaderMain {
 
     public static void main(String[] args) {
         int numberOfFlows;
-        int speedLimit;
+        int downloadSpeedLimit;
         String filePath;
         String dirName;
 
@@ -32,13 +32,13 @@ public class FileHTTPDownloaderMain {
                 numberOfFlows = Integer.valueOf(args[0].replaceAll("[^0-9]", ""));
 
                 String suffix = args[1].replaceAll("[^a-zA-Z]", "").replaceAll("-", "").toLowerCase(); // обработаем суффикс k - килобайты, m - мегабайты
-                speedLimit = Integer.valueOf(args[1].replaceAll("[^0-9]", ""));
+                downloadSpeedLimit = Integer.valueOf(args[1].replaceAll("[^0-9]", ""));
                 switch (suffix) {
                     case "k":
-                        speedLimit = speedLimit * 1024;
+                        downloadSpeedLimit = downloadSpeedLimit * 1024;
                         break;
                     case "m":
-                        speedLimit = speedLimit * 1024 * 1024;
+                        downloadSpeedLimit = downloadSpeedLimit * 1024 * 1024;
                         break;
                 }
                 filePath = args[2].replaceAll("-", "");
@@ -53,7 +53,7 @@ public class FileHTTPDownloaderMain {
         System.out.printf("Folder name: %s\n\n", dirName);
         System.out.printf("File path: %s\n", filePath);
         System.out.printf("Number of threads: %d\n", numberOfFlows);
-        System.out.printf("Speed Limit: %d \n", speedLimit);
+        System.out.printf("Speed Limit: %d \n", downloadSpeedLimit);
         OperationsFile operationsFile = new OperationsFile(filePath); //
 
         System.out.printf("What to download: \n");
